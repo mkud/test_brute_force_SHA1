@@ -1,0 +1,3 @@
+date
+./BruteForceSHA1CPU goyxxkSqSIqoEeTeSobCxgUAqWrfHTkWYhWwMGdxDuxsgcxXCZrULrvNouesdsbc
+date
