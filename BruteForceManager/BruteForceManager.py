@@ -111,10 +111,14 @@ def MainFunc():
                 threading.Thread(target=Worker, args=(".\\BruteForceSHA1CUDA.exe {}".format(authdata.decode("UTF-8")),)).start()
                 #RunCPUFarm(authdata)
                 if not event_suffix_found.wait(7200):
-                    #StopAllCPUFarm()
                     subprocess.call("taskkill /IM BruteForceSHA1CUDA.exe /T /F")
                     time.sleep(5)
                     conn.close()
+
+                    #StopAllCPUFarm()
+                    #print("Nothing happends")
+                    #exit(0)
+
                     return True
                 break
             conn.write(result_suffix + b"\n")
@@ -217,6 +221,9 @@ def MainFunc():
 
 if __name__ == '__main__':
     #UpdateAllCPUFarmWithNewVersion()
+    #exit(0)
+    #StopAllCPUFarm()
+    #exit(0)
     while True:
         try: 
             MainFunc()

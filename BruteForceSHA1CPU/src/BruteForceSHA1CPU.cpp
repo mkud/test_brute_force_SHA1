@@ -36,7 +36,7 @@ static void* Worker(void *param) {
 	struct timeval tv1;
 	gettimeofday(&tv1, NULL);
 	std::default_random_engine generator(tv1.tv_usec);
-	std::uniform_int_distribution<int> distribution(33, 127);
+	std::uniform_int_distribution<int> distribution(33, 126);
 	for (int i = 0; i < 55; i++)
 		data[i] = distribution(generator);
 	data[55] = 0x80;
@@ -47,7 +47,7 @@ static void* Worker(void *param) {
 	while (true) {
 		pos_cur = data;
 		while (true) {
-			if ((*pos_cur) == 127) {
+			if ((*pos_cur) == 126) {
 				(*pos_cur) = 33;
 				pos_cur++;
 				continue;

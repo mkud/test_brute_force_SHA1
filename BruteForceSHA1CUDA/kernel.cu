@@ -350,7 +350,7 @@ sha_transform(int *ret_block, __u32 *in_block)
 			
 			if (((a) == 0)) {
 				b += g_cSHA1baseCode[1];
-				if ((b & 0xffff0000) == 0) {
+				if ((b & 0xfff00000) == 0) {
 					block[0] = wi[0];
 					block[1] = wi[1];
 					block[2] = wi[2];
@@ -392,9 +392,12 @@ int main(int argc, char **argv)
 	std::uniform_int_distribution<int> distribution(33, 126);
 
 	unsigned char data[2048 * 64];
+	//memset(data, 33, 2048 * 64);
 	for (int j = 0; j < 2048; j++) {
 		for (int i = 0; i < 56; i++)
 			data[j*64 + i] = distribution(generator);
+		//data[j * 64] = 33 + (j % 94);
+		//data[j * 64 + 1] = 33 + int(j / 94);
 
 		data[j * 64 + 52] = 0x80;
 		memset(j * 64 + data + 56, 0, 8);
@@ -470,7 +473,7 @@ cudaError_t addWithCuda(__u32 SHA1Sum[], __u8 SHA1Data[], int *retVal)
 	}
 
     // Launch a kernel on the GPU with one thread for each element.
-	sha_transform <<<64, 32>>>(dev_retVal, dev_SHA1Data);
+	sha_transform <<<32, 64>>>(dev_retVal, dev_SHA1Data);
 
     // Check for any errors launching the kernel
     cudaStatus = cudaGetLastError();
