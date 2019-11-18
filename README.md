@@ -1,6 +1,6 @@
 # test task: Brute force SHA1
 
-The task is to find the string that the SHA1-hash has 12 leading zeros.
+The task is to find the string that the SHA1-hash has 11 leading zeros.
 
 * BruteForceManager - Main manager developed in Python. Main responsibility - 
   * connect to the test server with TLS;
