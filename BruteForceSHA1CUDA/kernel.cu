@@ -183,7 +183,7 @@ __constant__ __u32 g_cSHA1baseCode[5];
 __global__ void
 sha_transform(int *ret_block, __u32 *in_block)
 {
-	__u32 *block = in_block + ((blockIdx.x << 5) + threadIdx.x) * 16;
+	__u32 *block = in_block + ((blockIdx.x << 6) + threadIdx.x) * 16;
 	__u8 *pos_cur;
 
 	__u32 a, b, c, d, e;
@@ -368,7 +368,7 @@ sha_transform(int *ret_block, __u32 *in_block)
 					block[14] = wi[14];
 					block[15] = wi[15];
 
-					(*ret_block) = (blockIdx.x << 5) + threadIdx.x;
+					(*ret_block) = (blockIdx.x << 6) + threadIdx.x;
 					return;
 				}
 			}

@@ -55,7 +55,7 @@ static void* Worker(void *param) {
 			(*pos_cur)++;
 			memcpy(&ctxLocalResult, &g_ctxMainData, 32);
 			SHA1_Transform(&ctxLocalResult, data);
-			if (!ctxLocalResult.h0 && !(ctxLocalResult.h1 & 0x0000ffff)) {
+			if (!ctxLocalResult.h0 && !(ctxLocalResult.h1 & 0x00000fff)) {
 				for (int i = 0; i < 55; i++ )
 					cout << hex << int(data[i]) << " ";
 				cout << endl;
